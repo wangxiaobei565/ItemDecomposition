@@ -34,8 +34,8 @@ Modify train_env.sh:
   * --val_file ${data_path}{X}_b_test.csv\
 * Set your model_path and log_path in the script.
 * The env in our experiments is set by:
- *  kr_user_env_lr0.001_reg0.003_init
- *  ml1m_user_env_lr0.001_reg0.0001_final
+      *  kr_user_env_lr0.001_reg0.003_init
+      *  ml1m_user_env_lr0.001_reg0.0001_final
 
 
 ## 2. Add our code to MARLRec
