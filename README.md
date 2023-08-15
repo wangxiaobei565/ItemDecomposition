@@ -35,6 +35,19 @@ Modify train_env.sh:
 * Set your model_path and log_path in the script.
 
 ## 2. Add our code to MARLRec
+We add nine different agents, indluding
+- SlateQ
+- Supervision
+- HAC_normal
+- A2C
+- BehaviorSlateQ
+- BehaviorA2C
+- A2C_WA
+- A2C_WC
+- A2C_WAWC
+and their corresponding facade and critic.
+We can change the entire model file to update it.
+
 ```
 rm -rf MARLRec/code/model
 rm -rf MARLRec/code/scripts
