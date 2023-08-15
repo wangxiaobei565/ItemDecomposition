@@ -27,12 +27,16 @@ For ML1M data preparation, run cells in ML1MData.ipynb.
 
 Modify train_env.sh:
 * Change the directories, data_path, and output_path for your dataset
-* Set the following arguments with X in {RL4RS, ML1M}:
+* Set the following arguments with X in {ML1M, KuaiRand}:
   * --model {X}UserResponse\
   * --reader {X}DataReader\
   * --train_file ${data_path}{X}_b_train.csv\
   * --val_file ${data_path}{X}_b_test.csv\
 * Set your model_path and log_path in the script.
+* The env in our experiments is set by:
+ *  kr_user_env_lr0.001_reg0.003_init
+ *  ml1m_user_env_lr0.001_reg0.0001_final
+
 
 ## 2. Add our code to MARLRec
 We add nine different agents and their corresponding facade and critic, indluding
