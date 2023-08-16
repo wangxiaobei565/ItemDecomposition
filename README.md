@@ -95,5 +95,6 @@ bash XXXX.sh
 
 We give all of our training config in the scripts and the plot utils is in HAC framework to show the results visually.
 #### Note:
+- The experiments are easy to reproduce since our experiments are running in one GPU Tesla T4 with 15 GB memory.
 - The log name must be right for User Response Model.
 - The model save path can be changed by editing save_path and log_path after create the path.
