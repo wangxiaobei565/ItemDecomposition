@@ -59,26 +59,15 @@ cd /code/scripts/hyperparameter_search
 bash XXXX.sh
 ```
 This step is to find optimal performance with adjustable hyperparameter. Our result can list as :
-|dataset|method|actor_lr|critic_lr|Supervised_lr|
-|--|--|--|--|--|
-|ML1M|req_HAC|3e-5|1e-3|None|
-|KuaiRand|req_HAC|3e-5|3e-4|None|
-|ML1M|req_DDPG|1e-5|3e-3|None|
-|KuaiRand|req_DDPG|3e-5|3e-2|None|
-|ML1M|req_Supervision|None|None|0.0001|
-|KuaiRand|req_Supervision|None|None|0.0001|
-|ML1M|item_SlateQ|None|1e-4|None|
-|KuaiRand|item_SlateQ|None|1e-3|None|
-|ML1M|req_A2C|3e-5|3e-4|None|
-|KuaiRand|req_A2C|3e-4|3e-3|None|
-|ML1M|item_A2C|3e-4|3e-5|None|
-|KuaiRand|item_A2C|3e-4|3e-5|None|
-|ML1M|weighted actor|3e-4|3e-5|None|
-|KuaiRand|weighted actor|3e-4|3e-5|None|
-|ML1M|weighted critic|3e-4|3e-5|None|
-|KuaiRand|weighted critic|3e-4|3e-5|None|
-|ML1M|weighted both|3e-4|3e-5|None|
-|KuaiRand|weighted both|3e-4|3e-5|None|
+|dataset|method|actor_lr|critic_lr|weight_lr|
+|--|--|--|--|
+|ML1M|itemA2C|3e-4|3e-5|None|
+|KuaiRand|itemA2C|3e-4|3e-5|None|
+|ML1M|itemA2C-W|3e-4|3e-5|None|
+|KuaiRand|itemA2C-W|3e-4|3e-5|None|
+|ML1M|itemA2C-M|3e-5|3e-6|1e-8|
+|KuaiRand|itemA2C-M|1e-3|3e-6|1e-7|
+
 
 #### run the main experiments or ablation experiments
 ```
