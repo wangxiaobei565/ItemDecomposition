@@ -1,22 +1,23 @@
+# Future Impact Decomposition in Request-level Recommendations
+
+
+
 ## 0. Setup
 
 ```
-conda create -n weighta2c python=3.9
-conda activate weighta2c
+conda create -n itema2c python=3.9
+conda activate itema2c
 conda install pytorch torchvision -c pytorch
 conda install pandas matplotlib scikit-learn
 pip install tqdm
 conda install -c anaconda ipykernel
-python -m ipykernel install --user --name weighta2c --display-name "WeightA2C"
+python -m ipykernel install --user --name weighta2c --display-name "ItemA2C"
 ```
 
-## 1. Parpare for HAC framework
+## 1. Parpare for RL Simulator
 
-```
-git clone https://github.com/CharlieMat/MARLRec.git
-```
 
-We should follow MARLRec/code/Readme.md step1 and step2 to set up dataset and  Response Model as Environment Component
+We should set up dataset and  Response Model as Environment Component
 #### 1. Data Preparation
 
 For KuaiRand data preparation, run cells in KRData.ipynb. 
@@ -38,26 +39,11 @@ Modify train_env.sh:
   *  ml1m_user_env_lr0.001_reg0.0001_final
 
 
-## 2. Add our code to MARLRec
-We add nine different agents and their corresponding facade and critic, indluding
-- SlateQ
-- Supervision
-- HAC_normal
-- A2C
-- BehaviorSlateQ
-- BehaviorA2C
-- A2C_WA
-- A2C_WC
-- A2C_WAWC
-
-We can change the entire model file to update it.
-
-```
-rm -rf MARLRec/code/model
-rm -rf MARLRec/code/scripts
-cp -r model MARLRec/code
-cp -r scripts MARLRec/code
-```
+## 2. Our code
+We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2C_model. The corresponding facade, policy, critic are concluded in the model file.
+- itemA2C
+- itemA2C_W
+- itemA2C_model
 
 ## 3. Run code
 #### Search optimal hyperparameter for different method(optinonal)
@@ -93,7 +79,7 @@ cd MARLRec/code/scripts/XXXX
 bash XXXX.sh
 ```
 
-We give all of our training config in the scripts and the plot utils is in HAC framework to show the results visually.
+We give all of our training config in the scripts and the plot utils in the code to show the results visually.
 #### Note:
 - The experiments are easy to reproduce since our experiments are running in one GPU Tesla T4 with 15 GB memory.
 - The log name must be right for User Response Model.
