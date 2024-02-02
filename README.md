@@ -1,5 +1,7 @@
 # Future Impact Decomposition in Request-level Recommendations
 
+arxiv links:[Future Impact Decomposition in Request-level Recommendations](https://arxiv.org/abs/2401.16108)
+
 
 
 ## 0. Setup
@@ -37,6 +39,11 @@ Modify train_env.sh:
 * The env in our experiments is set by:
   *  kr_user_env_lr0.001_reg0.003_init
   *  ml1m_user_env_lr0.001_reg0.0001_final
+ 
+```
+conda activate itema2c
+bash train_env.sh
+```
 
 
 ## 2. Our code
@@ -48,7 +55,7 @@ We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2
 ## 3. Run code
 #### Search optimal hyperparameter for different method(optinonal)
 ```
-cd MARLRec/code/scripts/hyperparameter_search
+cd /code/scripts/hyperparameter_search
 bash XXXX.sh
 ```
 This step is to find optimal performance with adjustable hyperparameter. Our result can list as :
@@ -75,7 +82,7 @@ This step is to find optimal performance with adjustable hyperparameter. Our res
 
 #### run the main experiments or ablation experiments
 ```
-cd MARLRec/code/scripts/XXXX
+cd /code/scripts/XXXX
 bash XXXX.sh
 ```
 
