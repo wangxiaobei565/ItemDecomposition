@@ -60,7 +60,7 @@ bash XXXX.sh
 ```
 This step is to find optimal performance with adjustable hyperparameter. Our result can list as :
 |dataset|method|actor_lr|critic_lr|weight_lr|
-|--|--|--|--|
+|--|--|--|--|--|
 |ML1M|itemA2C|3e-4|3e-5|None|
 |KuaiRand|itemA2C|3e-4|3e-5|None|
 |ML1M|itemA2C-W|3e-4|3e-5|None|
