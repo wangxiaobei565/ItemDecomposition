@@ -53,6 +53,9 @@ We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2
 - itemA2C_W
 - itemA2C_model
 
+ ![image](https://github.com/wangxiaobei565/ItemDecomposition/tree/main/img/structure.png)
+
+
 ## 3. Run code
 #### Search optimal hyperparameter for different method(optinonal)
 ```
