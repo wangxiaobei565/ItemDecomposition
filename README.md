@@ -53,7 +53,7 @@ bash train_env.sh
 We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2C_model. The corresponding facade, policy, critic, weight_model are concluded in the model file.
 - itemA2C
 - itemA2C_W
-- itemA2C_model
+- itemA2C_model \\
 The ItemA2C learning framework:
  ![image](https://github.com/wangxiaobei565/ItemDecomposition/blob/main/img/structure.png)
 
