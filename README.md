@@ -1,7 +1,7 @@
 # Future Impact Decomposition in Request-level Recommendations
 
-arxiv links:[Future Impact Decomposition in Request-level Recommendations](https://arxiv.org/abs/2401.16108)
-
+- arxiv links:[Future Impact Decomposition in Request-level Recommendations](https://arxiv.org/abs/2401.16108)
+- Intuitive Example : Request-level Recommendations with Item-level Reward
 ![image](https://github.com/wangxiaobei565/ItemDecomposition/blob/main/img/user_reco.jpg)
 
 
@@ -23,6 +23,8 @@ python -m ipykernel install --user --name weighta2c --display-name "ItemA2C"
 We should set up dataset and  Response Model as Environment Component
 #### 1. Data Preparation
 
+- Download Dataset: [ML1M](https://grouplens.org/datasets/movielens/), [KuaiRand](https://github.com/chongminggao/KuaiRand)
+- Preprocess Dataset
 For KuaiRand data preparation, run cells in KRData.ipynb. 
 
 For ML1M data preparation, run cells in ML1MData.ipynb. 
@@ -48,11 +50,11 @@ bash train_env.sh
 
 
 ## 2. Our code
-We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2C_model. The corresponding facade, policy, critic are concluded in the model file.
+We release our model itemA2C, itemA2C-W, itemA2C-M as itemA2C, itemA2C_W, itemA2C_model. The corresponding facade, policy, critic, weight_model are concluded in the model file.
 - itemA2C
 - itemA2C_W
 - itemA2C_model
-
+The ItemA2C learning framework:
  ![image](https://github.com/wangxiaobei565/ItemDecomposition/blob/main/img/structure.png)
 
 
