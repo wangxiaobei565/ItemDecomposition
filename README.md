@@ -24,10 +24,10 @@ We should set up dataset and  Response Model as Environment Component
 #### 1. Data Preparation
 
 - Download Dataset: [ML1M](https://grouplens.org/datasets/movielens/), [KuaiRand](https://github.com/chongminggao/KuaiRand)
-- Preprocess Dataset:
- - For KuaiRand data preparation, run cells in KRData.ipynb. 
+- Preprocess Dataset: <br />
+  For KuaiRand data preparation, run cells in KRData.ipynb. 
 
- - For ML1M data preparation, run cells in ML1MData.ipynb. 
+  For ML1M data preparation, run cells in ML1MData.ipynb. 
 
 #### 2. Pretrain User Response Model as Environment Component
 
