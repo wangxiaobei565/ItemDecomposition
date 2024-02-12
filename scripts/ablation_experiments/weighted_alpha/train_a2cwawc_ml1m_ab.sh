@@ -49,8 +49,8 @@ do
                     python train_ac.py\
                         --env_class ML1MEnvironment_GPU\
                         --policy_class OneStagePolicy_with_${SCORER}\
-                        --critic_class TDCritic\
-                        --agent_class A2C_WAWC\
+                        --critic_class QCritic\
+                        --agent_class itemA2C_WWC\
                         --facade_class OneStageFacade_TD\
                         --seed ${SEED}\
                         --cuda 0\

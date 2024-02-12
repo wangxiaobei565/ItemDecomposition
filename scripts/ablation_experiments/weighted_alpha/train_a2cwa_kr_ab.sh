@@ -6,7 +6,7 @@ mkdir -p output/kr/
 mkdir -p output/kr/env/
 mkdir -p output/kr/env/log/
 mkdir -p output/kr/agents/alpha/
-mkdir -p output/kr/agents/alpha/weight_wa/
+mkdir -p output/kr/agents/alpha/itemA2C_W/
 
 output_path="output/kr/"
 log_name="kr_user_env_lr0.001_reg0.003_init"
@@ -42,13 +42,13 @@ do
             do
                 for ACTOR_LR in 0.00003
                 do
-                    mkdir -p ${output_path}agents/alpha/weight_wa/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/
+                    mkdir -p ${output_path}agents/alpha/itemA2C_W/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/
 
                     python train_ac.py\
                         --env_class KREnvironment_GPU\
                         --policy_class OneStagePolicy_with_${SCORER}\
-                        --critic_class TDCritic\
-                        --agent_class A2C_WA\
+                        --critic_class QCritic\
+                        --agent_class itemA2C_W\
                         --facade_class OneStageFacade_TD\
                         --seed ${SEED}\
                         --cuda 0\
@@ -67,7 +67,7 @@ do
                         --start_timestamp 2000\
                         --noise_var ${NOISE}\
                         --empty_start_rate ${EMPTY}\
-                        --save_path ${output_path}agents/alpha/weight_wa/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/model\
+                        --save_path ${output_path}agents/alpha/itemA2C_W/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/model\
                         --alpha ${ALPHA}\
                         --episode_batch_size ${EP_BS}\
                         --batch_size ${BS}\
@@ -85,7 +85,7 @@ do
                         --elbow_greedy ${ELBOW}\
                         --check_episode 10\
                         --topk_rate ${TOPK}\
-                        > ${output_path}agents/alpha/weight_wa/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/log
+                        > ${output_path}agents/alpha/itemA2C_W/kr_wa_alpha${ALPHA}_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/log
                 done
             done
         done
