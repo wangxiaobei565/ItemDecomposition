@@ -5,8 +5,8 @@ mkdir -p output
 mkdir -p output/kr/
 mkdir -p output/kr/env/
 mkdir -p output/kr/env/log/
-mkdir -p output/kr/agents/slate/
-mkdir -p output/kr/agents/slate/reqhac/
+mkdir -p output/kr/agents/
+mkdir -p output/kr/agents/itema2c/
 
 
 output_path="output/kr/"
@@ -28,14 +28,14 @@ EP_BS=32
 BS=64
 SEED=3
 SCORER="WideDeep"
-CRITIC_LR=0.000003
+CRITIC_LR=0.001
 ACTOR_LR=0.0001
 BEHAVE_LR=0
 TEMPER_RATE=1.0
 
 for MAX_STEP in 20 
 do
-    for SLATE in 1 2 4 6 8 
+    for CRITIC_LR in 0.000003
     do
         for SCORER in "WideDeep"
         do
@@ -43,14 +43,14 @@ do
             do
                 for ACTOR_LR in 0.00003
                 do
-                    mkdir -p ${output_path}agents/slate/reqhac/reqHAC_kr_slate_${SLATE}_seed${SEED}/
+                    mkdir -p ${output_path}agents/itema2c/itemA2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/
 
                     python train_ac.py\
                         --env_class KREnvironment_GPU\
                         --policy_class OneStagePolicy_with_${SCORER}\
-                        --critic_class HACCritic\
-                        --agent_class HAC_normal\
-                        --facade_class OneStageFacade_HAC\
+                        --critic_class QCritic\
+                        --agent_class A2C_WTD\
+                        --facade_class OneStageFacade_TD\
                         --seed ${SEED}\
                         --cuda 0\
                         --env_path ${output_path}env/${log_name}.env\
@@ -63,13 +63,12 @@ do
                         --state_encoder_hidden_dims 128\
                         --policy_actionnet_hidden 64\
                         --critic_hidden_dims 256 64\
-                        --critic_slate_size ${SLATE}\
-                        --slate_size ${SLATE}\
+                        --slate_size 6\
                         --buffer_size 100000\
                         --start_timestamp 2000\
                         --noise_var ${NOISE}\
                         --empty_start_rate ${EMPTY}\
-                        --save_path ${output_path}agents/slate/reqhac/reqHAC_kr_slate_${SLATE}_seed${SEED}/model\
+                        --save_path ${output_path}agents/itema2c/item_A2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/model\
                         --episode_batch_size ${EP_BS}\
                         --batch_size ${BS}\
                         --actor_lr ${ACTOR_LR}\
@@ -86,7 +85,7 @@ do
                         --elbow_greedy ${ELBOW}\
                         --check_episode 10\
                         --topk_rate ${TOPK}\
-                        > ${output_path}agents/slate/reqhac/reqHAC_kr_slate_${SLATE}_seed${SEED}/log
+                        > ${output_path}agents/itema2c/item_A2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/log
                 done
             done
         done

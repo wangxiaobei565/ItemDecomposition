@@ -1,17 +1,16 @@
 mkdir -p output
 
-# kr environment
+# ml1m environment
 
-mkdir -p output/kr/
-mkdir -p output/kr/env/
-mkdir -p output/kr/env/log/
-mkdir -p output/kr/agents/
-mkdir -p output/kr/agents/alpha/
-mkdir -p output/kr/agents/alpha/wawc_alpha/
+mkdir -p output/ml1m/
+mkdir -p output/ml1m/env/
+mkdir -p output/ml1m/env/log/
+mkdir -p output/ml1m/agents/
+mkdir -p output/ml1m/agents/itema2c/
 
 
-output_path="output/kr/"
-log_name="kr_user_env_lr0.001_reg0.003_init"
+output_path="output/ml1m/"
+log_name="ml1m_user_env_lr0.001_reg0.0001_final"
 
 
 N_ITER=30000
@@ -29,15 +28,14 @@ EP_BS=32
 BS=64
 SEED=3
 SCORER="WideDeep"
-CRITIC_LR=0.000003
+CRITIC_LR=0.001
 ACTOR_LR=0.0001
 BEHAVE_LR=0
 TEMPER_RATE=1.0
-ALPHA=0.5
 
-for ALPHA_A in 0 0.2 0.4 0.6 0.8 0.999 1.2 
+for MAX_STEP in 20 
 do
-    for ALPHA_C in 0 0.2 0.4 0.6 0.8 0.999 1.2 
+    for CRITIC_LR in 0.000003
     do
         for SCORER in "WideDeep"
         do
@@ -45,13 +43,13 @@ do
             do
                 for ACTOR_LR in 0.00003
                 do
-                    mkdir -p ${output_path}agents/alpha/wawc_alpha/A2CWAWC_kr_alpha_a${ALPHA_A}_alpha_c${ALPHA_C}_seed${SEED}/
-
+                    mkdir -p ${output_path}agents/itema2c/item_A2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/
+                    
                     python train_ac.py\
-                        --env_class KREnvironment_GPU\
+                        --env_class ML1MEnvironment_GPU\
                         --policy_class OneStagePolicy_with_${SCORER}\
                         --critic_class QCritic\
-                        --agent_class itemA2C_WWC_new_alpha\
+                        --agent_class A2C_WTD\
                         --facade_class OneStageFacade_TD\
                         --seed ${SEED}\
                         --cuda 0\
@@ -70,11 +68,9 @@ do
                         --start_timestamp 2000\
                         --noise_var ${NOISE}\
                         --empty_start_rate ${EMPTY}\
-                        --save_path ${output_path}agents/alpha/wawc_alpha/A2CWAWC_kr_alpha_a${ALPHA_A}_alpha_c${ALPHA_C}_seed${SEED}/model\
+                        --save_path ${output_path}agents/itema2c/item_A2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/model\
                         --episode_batch_size ${EP_BS}\
                         --batch_size ${BS}\
-                        --alpha_a ${ALPHA_A}\
-                        --alpha_c ${ALPHA_C}\
                         --actor_lr ${ACTOR_LR}\
                         --critic_lr ${CRITIC_LR}\
                         --behavior_lr ${BEHAVE_LR}\
@@ -89,7 +85,7 @@ do
                         --elbow_greedy ${ELBOW}\
                         --check_episode 10\
                         --topk_rate ${TOPK}\
-                        > ${output_path}agents/alpha/wawc_alpha/A2CWAWC_kr_alpha_a${ALPHA_A}_alpha_c${ALPHA_C}_seed${SEED}/log
+                        > ${output_path}agents/itema2c/item_A2C_${SCORER}_actor${ACTOR_LR}_critic${CRITIC_LR}_niter${N_ITER}_reg${REG}_ep${INITEP}_noise${NOISE}_bs${BS}_epbs${EP_BS}_step${MAX_STEP}_seed${SEED}/log
                 done
             done
         done
