@@ -2,7 +2,7 @@
 
 arxiv links:[Future Impact Decomposition in Request-level Recommendations](https://arxiv.org/abs/2401.16108)
 
-![image](https://github.com/wangxiaobei565/ItemDecomposition/tree/main/img/user_reco.pdf)
+![image](https://github.com/wangxiaobei565/ItemDecomposition/raw/master/img/user_reco.pdf)
 
 
 ## 0. Setup
